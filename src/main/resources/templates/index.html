@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>start.spring.io导入项目</title>
+</head>
+<body>
+    <h2>start.spring.io导入项目</h2>
+    <h2>文件上传</h2>
+    <form action="/file/upload" enctype="multipart/form-data" method="post">
+        <input type="file" name="file">
+        <button type="submit">立即上传</button>
+    </form>
+    <button onclick="download()">下载附件</button>
+    <script>
+        function download() {
+            console.log("附件下载");
+            // window.location.href="download?fileName=工作簿1.xlsx"
+        }
+    </script>
+</body>
+</html>

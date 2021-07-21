@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.muyi.manager.mapper.GoodsOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.muyi.manager.entity.GoodsOrder" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="orderName" property="ordername" jdbcType="VARCHAR" />
+    <result column="orderPrice" property="orderprice" jdbcType="VARCHAR" />
+    <result column="orderNum" property="ordernum" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.muyi.manager.entity.GoodsOrder" extends="BaseResultMap" >
+    <result column="address" property="address" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, orderName, orderPrice, orderNum, phone, user_name
+  </sql>
+  <sql id="Blob_Column_List" >
+    address
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from goods_order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from goods_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.muyi.manager.entity.GoodsOrder" >
+    insert into goods_order (id, orderName, orderPrice, 
+      orderNum, phone, user_name, 
+      address)
+    values (#{id,jdbcType=INTEGER}, #{ordername,jdbcType=VARCHAR}, #{orderprice,jdbcType=VARCHAR}, 
+      #{ordernum,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+      #{address,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.muyi.manager.entity.GoodsOrder" >
+    insert into goods_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="ordername != null" >
+        orderName,
+      </if>
+      <if test="orderprice != null" >
+        orderPrice,
+      </if>
+      <if test="ordernum != null" >
+        orderNum,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="ordername != null" >
+        #{ordername,jdbcType=VARCHAR},
+      </if>
+      <if test="orderprice != null" >
+        #{orderprice,jdbcType=VARCHAR},
+      </if>
+      <if test="ordernum != null" >
+        #{ordernum,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.muyi.manager.entity.GoodsOrder" >
+    update goods_order
+    <set >
+      <if test="ordername != null" >
+        orderName = #{ordername,jdbcType=VARCHAR},
+      </if>
+      <if test="orderprice != null" >
+        orderPrice = #{orderprice,jdbcType=VARCHAR},
+      </if>
+      <if test="ordernum != null" >
+        orderNum = #{ordernum,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.muyi.manager.entity.GoodsOrder" >
+    update goods_order
+    set orderName = #{ordername,jdbcType=VARCHAR},
+      orderPrice = #{orderprice,jdbcType=VARCHAR},
+      orderNum = #{ordernum,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      address = #{address,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.muyi.manager.entity.GoodsOrder" >
+    update goods_order
+    set orderName = #{ordername,jdbcType=VARCHAR},
+      orderPrice = #{orderprice,jdbcType=VARCHAR},
+      orderNum = #{ordernum,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
